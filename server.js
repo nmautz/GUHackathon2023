@@ -32,6 +32,17 @@ app.post('/text_to_speech', (req, res) => {
   console.log('Received text:', text);
   console.log('Selected voice:', voicenum);
 
+  let prof_severity = parseInt(checkForProfanity(text, profanityFilter))
+  console.log('Profanity severity:', prof_severity);
+  if (prof_severity > 2) {
+    console.log('Profanity detected, not generating speech');
+    res.send({"url":"/profanity.mp3"}); // Send a success response
+
+    return;
+  }else{
+    console.log('Profanity not detected, generating speech');
+  }
+
 
 
 
