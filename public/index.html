@@ -85,14 +85,12 @@
         // Make the POST request using the fetch API
         fetch(url, requestConfig)
           .then((response) => {
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            }
+
             return response.json(); // Parse the response as JSON
           })
           .then((data) => {
             // Handle the response data here
-            alert('POST request successful:', data);
+            alert('POST request successful:' + data["url"]);
           })
           .catch((error) => {
             // Handle any errors that occurred during the request
