@@ -90,11 +90,17 @@
           })
           .then((data) => {
             // Handle the response data here
-            alert('POST request successful:' + data["url"]);
+            console.log('POST request successful:' + data["url"]);
+            audio_src = document.getElementById("audio-src")
+            audio_e = document.getElementById("audio")
+            audio_src.src = data["url"]
+            audio_e.load()
+            audio_e.play()
+
           })
           .catch((error) => {
             // Handle any errors that occurred during the request
-            alert('POST request failed:', error);
+            console.log('POST request failed:', error);
           });
       }
 
@@ -106,13 +112,16 @@
 
         const select_box = document.getElementById("selectBox")
 
-        submit_button.addEventListener('click', ()=>{
+        submit_button.addEventListener('click', (e)=>{
 
           let text = text_input.value
           let voice = select_box.options[select_box.selectedIndex].textContent
 
 
           text_to_speech_api(text,voice)
+
+          e.preventDefault()
+          e.stopPropagation()
 
 
         })
@@ -149,8 +158,8 @@
     <br>
     <br>
 
-    <audio controls>
-      <source src="/voice.mp3" type="audio/mp3">
+    <audio id="audio" controls>
+      <source id="audio-src" src="/default.mp3" type="audio/mp3">
       Your browser does not support the audio tag.
     </audio>
 

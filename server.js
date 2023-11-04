@@ -33,7 +33,7 @@ app.post('/text_to_speech', (req, res) => {
 
   generate_speech(text, voicenum,"audio.mp3")
 
-  res.send({"url":"Success"}); // Send a success response
+  res.send({"url":"/voice.mp3"}); // Send a success response
 });
 
 app.listen(port, () => {
