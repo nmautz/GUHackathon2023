@@ -3,6 +3,7 @@
 
 const spawn = require('child_process').spawn;
 
+const crypto = require('crypto')
 const express = require('express');
 const app = express();
 const port = 3000;
@@ -31,7 +32,10 @@ app.post('/text_to_speech', (req, res) => {
   console.log('Received text:', text);
   console.log('Selected voice:', voicenum);
 
-  let filename = "voice.mp3"
+
+
+
+  const filename = "voice.mp3" //const filename = crypto.randomUUID({disableEntropyCache : true});
 
   generate_speech(text, voicenum, filename)
 
