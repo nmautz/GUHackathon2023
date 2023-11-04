@@ -59,12 +59,11 @@
 
 
     <script>
-      function text_to_speech_api(text, voicenum){
+      function text_to_speech_api(text){
         // Define the data to send in the POST request (in JSON format)
         
         const postData = {
           "text": text,
-          "voicenum": voicenum,
         };
 
         // Convert the data to a JSON string
@@ -110,15 +109,13 @@
 
         const text_input = document.getElementById("textInput")
 
-        const select_box = document.getElementById("selectBox")
 
         submit_button.addEventListener('click', (e)=>{
 
           let text = text_input.value
-          let voice = select_box.options[select_box.selectedIndex].textContent
 
 
-          text_to_speech_api(text,voice)
+          text_to_speech_api(text)
 
           e.preventDefault()
           e.stopPropagation()
@@ -142,11 +139,6 @@
     <div id="container">
         <h1>Voice Model</h1>
         <form>
-            <label for="selectBox">Select an voice:</label>
-            <select id="selectBox">
-                <option value="voice0">Graham Morehead</option>
-                <option value="voice1">Aaron Crandal</option>
-            </select>
             <label for="textInput">Enter text:</label>
             <input type="text" id="textInput" placeholder="Type something">
             <input type="submit" id="submitButton" value="Generate">
