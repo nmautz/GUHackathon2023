@@ -69,6 +69,20 @@
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
+
+        #loading-gif-container {
+          position: relative;
+          /* top: 50%; Adjust the top position as needed */
+          /* right: 50%; Adjust the right position as needed */
+          z-index: 9999; /* Ensure it's above other content */
+          display: none;
+        }
+
+        #loading-gif {
+          width: 75px; /* Adjust the width as needed */
+          height: 50px; /* Adjust the height as needed */
+          /* float: left; */
+        }
     </style>
 
 
@@ -86,7 +100,7 @@
 
         // Define the URL where you want to send the POST request
         const url = '/text_to_speech'; // Replace with your actual API endpoint URL
-
+        
         // Set up the request configuration
         const requestConfig = {
           method: 'POST',
@@ -99,7 +113,8 @@
         // Make the POST request using the fetch API
         fetch(url, requestConfig)
           .then((response) => {
-
+            // To show the loading GIF:
+            document.getElementById("loading-gif-container").style.display = "block";
             return response.json(); // Parse the response as JSON
           })
           .then((data) => {
@@ -110,7 +125,8 @@
             audio_src.src = data["url"]
             audio_e.load()
             audio_e.play()
-
+            // To show the loading GIF:
+            document.getElementById("loading-gif-container").style.display = "none";
           })
           .catch((error) => {
             // Handle any errors that occurred during the request
@@ -163,6 +179,9 @@
 <body>
   <div id="body">
     <div id="mainContainer">
+      <div id="loading-gif-container">
+        <img id="loading-gif" src="images/loading.gif" alt="Loading">
+      </div>
       <div id="container">
           <h1>Graham Morehead Voice Generator</h1>
           <form>
