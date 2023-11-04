@@ -32,6 +32,8 @@ app.post('/text_to_speech', (req, res) => {
   console.log('Selected voice:', voicenum);
 
   generate_speech(text, voicenum,"audio.mp3")
+
+  res.sendStatus(200); // Send a success response
 });
 
 app.listen(port, () => {
