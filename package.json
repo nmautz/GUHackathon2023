@@ -1,0 +1,15 @@
+{
+  "name": "guhackathon2023",
+  "version": "1.0.0",
+  "description": "Voice Cloning",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Nathan Mautz, Josh Shetler, Ben Berton",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
