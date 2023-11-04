@@ -15,15 +15,17 @@ app.use(express.static('public'));
 app.use(express.json());
 
 
-function generate_speech(text, filename){
+function generate_speech(text, filename, callback){
   const pythonProcess = spawn('python3', ['speech.py', text, filename]);
 
   pythonProcess.stdout.on('data', (data) => {
     console.log(data.toString());
+    callback(filename)
   });
 
   pythonProcess.stderr.on('data', (data) => {
     console.error(data.toString());
+    callback(filename)
   });
 
 }
@@ -47,11 +49,16 @@ app.post('/text_to_speech', (req, res) => {
 
 
 
-  const filename = "voice.wav" //const filename = crypto.randomUUID({disableEntropyCache : true});
+  //let filename = "voice"  //Replace with line below
+  let filename = crypto.randomUUID({disableEntropyCache : true});
+  filename+=".wav"
 
-  generate_speech(text, filename)
+  generate_speech(text, filename, (file_name)=>{
 
-  res.send({"url":"/"+filename}); // Send a success response
+    res.send({"url":"/"+file_name}); // Send a success response
+
+  })
+
 });
 
 app.listen(port, () => {
