@@ -8,6 +8,9 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+var filter = require('leo-profanity');
+filter.loadDictionary('en')
+
 app.use(express.static('public'));
 app.use(express.json());
 
@@ -32,15 +35,14 @@ app.post('/text_to_speech', (req, res) => {
   console.log('Received text:', text);
   console.log('Selected voice:', voicenum);
 
-  let prof_severity = parseInt(checkForProfanity(text, profanityFilter))
-  console.log('Profanity severity:', prof_severity);
-  if (prof_severity > 2) {
-    console.log('Profanity detected, not generating speech');
-    res.send({"url":"/profanity.mp3"}); // Send a success response
 
-    return;
-  }else{
-    console.log('Profanity not detected, generating speech');
+  clean_text = filter.clean(text)
+
+  if (clean_text.includes('*')){
+    res.send({"url":"/profanity.mp3"}); // Send a success response
+    console.log("profanity: " + text)
+    return
+
   }
 
 
