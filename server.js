@@ -38,7 +38,7 @@ app.post('/text_to_speech', (req, res) => {
   clean_text = filter.clean(text)
 
   if (clean_text.includes('*')){
-    res.send({"url":"/profanity.mp3"}); // Send a success response
+    res.send({"url":"/profanity.wav"}); // Send a success response
     console.log("profanity: " + text)
     return
 
@@ -47,7 +47,7 @@ app.post('/text_to_speech', (req, res) => {
 
 
 
-  const filename = "voice.mp3" //const filename = crypto.randomUUID({disableEntropyCache : true});
+  const filename = "voice.wav" //const filename = crypto.randomUUID({disableEntropyCache : true});
 
   generate_speech(text, filename)
 
