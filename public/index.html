@@ -100,6 +100,31 @@
           });
       }
 
+      document.addEventListener('DOMContentLoaded', ()=>{
+
+        const submit_button = document.getElementById("submitButton")
+
+        const text_input = document.getElementById("textInput")
+
+        const select_box = document.getElementById("selectBox")
+
+        submit_button.addEventListener('click', ()=>{
+
+          let text = text_input.value
+          let voice = select_box.options[select_box.selectedIndex].textContent
+
+
+
+
+        })
+
+
+
+
+
+
+      })
+
     </script>
 
 </head>
@@ -109,9 +134,9 @@
         <form>
             <label for="selectBox">Select an option:</label>
             <select id="selectBox">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
+                <option value="voice0">Voice 1</option>
+                <option value="voice1">Voice 2</option>
+                <option value="voice2">Voice 3</option>
             </select>
             <label for="textInput">Enter text:</label>
             <input type="text" id="textInput" placeholder="Type something">
