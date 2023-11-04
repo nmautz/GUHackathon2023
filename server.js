@@ -31,9 +31,11 @@ app.post('/text_to_speech', (req, res) => {
   console.log('Received text:', text);
   console.log('Selected voice:', voicenum);
 
-  generate_speech(text, voicenum,"audio.mp3")
+  let filename = "voice.mp3"
 
-  res.send({"url":"/voice.mp3"}); // Send a success response
+  generate_speech(text, voicenum, filename)
+
+  res.send({"url":"/"+filename}); // Send a success response
 });
 
 app.listen(port, () => {
