@@ -71,7 +71,7 @@
         const jsonData = JSON.stringify(postData);
 
         // Define the URL where you want to send the POST request
-        const url = '/text-to-speech'; // Replace with your actual API endpoint URL
+        const url = '/text_to_speech'; // Replace with your actual API endpoint URL
 
         // Set up the request configuration
         const requestConfig = {
@@ -114,6 +114,7 @@
           let voice = select_box.options[select_box.selectedIndex].textContent
 
 
+          text_to_speech_api(text,voice)
 
 
         })

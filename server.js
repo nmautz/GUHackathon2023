@@ -7,9 +7,14 @@ const app = express();
 const port = 3000;
 
 app.use(express.static('public'));
+app.use(express.json());
 
-app.get('/text_to_speach', (req, res) => {
-  res.send(req.body);
+app.post('/text_to_speech', (req, res) => {
+  const { text, voicenum } = req.body; // Extract data from the JSON body
+
+  // Your text-to-speech processing logic goes here
+  console.log('Received text:', text);
+  console.log('Selected voice:', voicenum);
 });
 
 app.listen(port, () => {
