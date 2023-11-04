@@ -1,4 +1,3 @@
-
 //run "npm install"
 
 const spawn = require('child_process').spawn;
