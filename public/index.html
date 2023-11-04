@@ -10,7 +10,14 @@
             background-color: #f2f2f2;
             text-align: center;
             margin: 0;
+            height: 100%;
             padding: 0;
+            background-image: url(images/moreheadHeadshot.jpeg);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-attachment: fixed;
+            transition: background-image 5s; /* Add a transition to the background-image property */
+
         }
 
         #container {
@@ -20,8 +27,15 @@
             max-width: 400px;
             margin: 0 auto;
             padding: 20px;
-            margin-top: 20px;
+            margin-top: 0px;
         }
+
+        #mainContainer {
+          padding-left: 5%;
+          padding-top: 5%;
+          float: left;
+        }
+
 
         h1 {
             color: #333;
@@ -128,10 +142,18 @@
 
         pause_play_button = document.getElementById("pause_play_btn")
 
-
-
-
-
+        curBackgroundNum = 0
+        numberOfBackgrounds = 5
+        function cycleBackground()
+        {
+          curBackgroundNum = curBackgroundNum % numberOfBackgrounds
+          let body = document.body
+          const newBackgroundImage = "images/moreheadHeadshot" + (curBackgroundNum + 1) + ".jpg"; // Change this to the path of your new background image
+          body.style.backgroundImage = `url('${newBackgroundImage}')`;
+          curBackgroundNum++
+        }
+        // cycles through background images
+        const interval = setInterval(cycleBackground, 5000);
 
       })
 
@@ -139,29 +161,32 @@
 
 </head>
 <body>
-    <div id="container">
-        <h1>Modern Form</h1>
-        <form>
-            <label for="selectBox">Select an option:</label>
-            <select id="selectBox">
-                <option value="voice0">Voice 1</option>
-                <option value="voice1">Voice 2</option>
-                <option value="voice2">Voice 3</option>
-            </select>
-            <label for="textInput">Enter text:</label>
-            <input type="text" id="textInput" placeholder="Type something">
-            <input type="submit" id="submitButton" value="Submit">
-        </form>
+  <div id="body">
+    <div id="mainContainer">
+      <div id="container">
+          <h1>Graham Morehead Voice Generator</h1>
+          <form>
+              <label for="selectBox">Select an option:</label>
+              <select id="selectBox">
+                  <option value="voice0">Voice 1</option>
+                  <option value="voice1">Voice 2</option>
+                  <option value="voice2">Voice 3</option>
+              </select>
+              <label for="textInput">Enter text:</label>
+              <input type="text" id="textInput" placeholder="Type something">
+              <input type="submit" id="submitButton" value="Submit">
+          </form>
+      </div>
+
+      <br>
+      <br>
+      <br>
+
+      <audio id="audio" controls>
+        <source id="audio-src" src="/default.mp3" type="audio/mp3">
+        Your browser does not support the audio tag.
+      </audio>
     </div>
-
-    <br>
-    <br>
-    <br>
-
-    <audio id="audio" controls>
-      <source id="audio-src" src="/default.mp3" type="audio/mp3">
-      Your browser does not support the audio tag.
-    </audio>
-
-  </body>
+  </div>
+</body>
 </html>
