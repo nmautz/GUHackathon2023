@@ -90,6 +90,7 @@
           .then((data) => {
             // Handle the response data here
             console.log('POST request successful:' + data["url"]);
+            document.getElementById("submitButton").value = "Generate"
             audio_src = document.getElementById("audio-src")
             audio_e = document.getElementById("audio")
             audio_src.src = data["url"]
@@ -113,6 +114,7 @@
         submit_button.addEventListener('click', (e)=>{
 
           let text = text_input.value
+          submit_button.value = "Wait..."
 
 
           text_to_speech_api(text)
