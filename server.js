@@ -15,7 +15,7 @@ app.use(express.json());
 
 
 function generate_speech(text, filename, callback){
-  const pythonProcess = spawn('python3', ['speech.py', text, filename]);
+  const pythonProcess = spawn('python3', ['speech.py', "--text",text,"--audio_file", filename]);
 
   pythonProcess.stdout.on('data', (data) => {
     console.log(data.toString());
