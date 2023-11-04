@@ -8,8 +8,8 @@ const port = 3000;
 
 app.use(express.static('public'));
 
-app.get('/hello', (req, res) => {
-  res.send('Hello, World!');
+app.get('/text_to_speach', (req, res) => {
+  res.send(req.body);
 });
 
 app.listen(port, () => {
